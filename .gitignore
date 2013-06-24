@@ -1,0 +1,3 @@
+# Ignore cache and logs
+application/cache/*
+application/logs/*
