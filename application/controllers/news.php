@@ -1,52 +1,44 @@
 <?php
 
-class News extends CI_Controller {
-
-    public function __construct() {
+class News extends MY_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
     
-        $this->load->model('news_model');
+        $this->load->model('News_model');
     }
     
-    public function index() {
-        $this->view['news'] = $this->news_model->get_news();
-        $this->view['title'] = 'Archiwum newsów';
-        
-        $this->load->view('templates/header', $this->view);
+    public function index()
+    {
+        $this->view['news'] = $this->News_model->get_news();
         $this->load->view('news/index', $this->view);
-        $this->load->view('templates/footer');
     }
     
-    public function view($slug) {
-        $this->view['news_item'] = $this->news_model->get_news($slug);
+    public function view($slug)
+    {
+        $this->view['news_item'] = $this->News_model->get_news($slug);
         
-        if ( empty($data['news_item']))
+        if ( empty($this->view['news_item']))
             show_404();
         
-        $this->view['title'] = $data['news_item']['title'];
-        $this->load->view('templates/header', $this->view);
+        $this->view['title'] = $this->view['news_item']['title'];
+        $this->reload_header();
+        
         $this->load->view('news/view', $this->view);
-        $this->load->view('templates/footer');
     }
     
-    public function create() {
-        $this->load->helper('form');
+    public function create()
+    {
         $this->load->library('form_validation');
         
-        $this->view['title'] = 'Dodaj newsa';
-        
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('text', 'text', 'required');
-        
-        if ( $this->form_validation->run() === FALSE )
+        if ( $this->form_validation->run('create_news') === FALSE )
         {
-            $this->load->view('templates/header', $this->view);
             $this->load->view('news/create', $this->view);
-            $this->load->view('templates/footer');
         }
         else
         {
-            $this->news_model->set_news();
+            $this->News_model->set_news();
             $this->load->view('news/success');
         }
     }

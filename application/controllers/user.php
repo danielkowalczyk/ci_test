@@ -1,58 +1,37 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends MY_Controller
-{    
+{
+    public $logged_in_actions = array('logout');
+    public $logged_out_actions = array('signup', 'sign_in');
+    
     public function signup()
     {
-        if ( $this->User_model->logged_in() === FALSE )
-        {
-            $this->load->library('form_validation');
+        $this->load->library('form_validation');
 
-            $this->view['title'] = $this->lang->line('page_title_signup');
-            $this->load->view('templates/header', $this->view);
-
-            if ( $this->form_validation->run('signup') == FALSE )
-            {    
-                $this->load->view('user/signup');            
-            }
-            else
-            {
-                $this->User_model->create_user();
-                $this->load->view('user/signup_success');
-            }
-
-            $this->load->view('templates/footer');
+        if ( $this->form_validation->run('signup') == FALSE )
+        {    
+            $this->load->view('user/signup');            
         }
         else
         {
-            redirect('/', 'location', 301);
+            $this->User_model->create_user();
+            $this->load->view('user/signup_success');
         }
     }
     
     public function sign_in()
     {
-        if ( $this->User_model->logged_in() === FALSE )
+        $this->load->library('form_validation');
+
+        if ( $this->form_validation->run('sign_in') == FALSE )
         {
-            $this->load->library('form_validation');
-
-            $this->view['title'] = $this->lang->line('page_title_sign_in');
-            $this->load->view('templates/header', $this->view);
-
-            if ( $this->form_validation->run('sign_in') == FALSE )
-            {
-                $this->load->view('user/sign_in');
-            }
-            else
-            {
-                $this->User_model->complete_login();
-                $this->load->view('user/sign_in_success');
-            }
-
-            $this->load->view('templates/footer');
+            $this->load->view('user/sign_in');
         }
         else
         {
-            redirect('/', 'location', 301);
+            $this->User_model->complete_login();
+            $this->load->view('user/sign_in_success');
         }
     }
     

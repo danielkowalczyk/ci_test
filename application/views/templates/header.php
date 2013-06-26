@@ -6,14 +6,17 @@
     </head>
     <body>
         
+    <a href="<?php echo base_url(); ?>">Home</a><br>
+    <a href="<?php echo base_url(); ?>news">Newsy</a><br>
+    
     <?php if ( $logged_in ): ?>
         
-        <a href="user/logout">Wyloguj się</a>
+        <a href="<?php echo base_url(); ?>user/logout">Wyloguj się</a>
         
     <?php else: ?>
         
-        <a href="user/sign_in">Zaloguj się</a> /
-        <a href="user/signup">Zarejestruj się</a>
+        <a href="<?php echo base_url(); ?>user/sign_in">Zaloguj się</a> /
+        <a href="<?php echo base_url(); ?>user/signup">Zarejestruj się</a>
         
     <?php endif; ?>
 

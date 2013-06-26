@@ -23,5 +23,14 @@ $config = array(
         array('field' => 'password',
               'label' => 'lang:form_field_password',
               'rules' => 'required|callback_check_login[username]')
+    ),
+    
+    'create_news' => array(
+        array('field' => 'title',
+              'label' => 'lang:form_field_title',
+              'rules' => 'required'),
+        array('field' => 'text',
+              'label' => 'lang:text',
+              'rules' => 'required')
     )
 );

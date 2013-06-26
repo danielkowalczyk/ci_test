@@ -8,9 +8,8 @@ class Pages extends MY_Controller
             show_404();
         
         $this->view['title'] = ucfirst($page);
+        $this->reload_header();
         
-        $this->load->view('templates/header', $this->view);
         $this->load->view('pages/'.$page,  $this->view);
-        $this->load->view('templates/footer', $this->view);
     }
 }
