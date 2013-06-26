@@ -22,9 +22,7 @@ class News extends MY_Controller
         if ( empty($this->view['news_item']))
             show_404();
         
-        $this->view['title'] = $this->view['news_item']['title'];
-        $this->reload_header();
-        
+        $this->header(array('title' => $this->view['news_item']['title']));
         $this->load->view('news/view', $this->view);
     }
     

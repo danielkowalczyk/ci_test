@@ -44,9 +44,14 @@ class MY_Controller extends CI_Controller
     }
     
     // Reload header if it's variables have been changed in controller
-    public function reload_header()
+    public function header($replace_vars = array())
     {
         $this->output->set_output('');
+        foreach ($replace_vars as $key => $value)
+        {
+            $this->view[$key] = $value;
+        }
+        
         $this->load->view('templates/header', $this->view);
     }
     
