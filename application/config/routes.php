@@ -38,7 +38,14 @@
 |
 */
 
+$route['user/(:any)'] = 'user/$1';
+$route['backend'] = 'backend/home';
+$route['backend/(:any)'] = 'backend/$1';
+$route['news/create'] = 'news/create';
+$route['news/(:any)'] = 'news/view/$1';
+$route['news'] = 'news';
 $route['default_controller'] = "pages/view";
+//$route['pages/view/(:any)'] = 'pages/view/$1';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 

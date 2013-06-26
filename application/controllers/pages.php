@@ -1,17 +1,16 @@
 <?php
 
-class Pages extends CI_Controller {
-
-    public function view($page = 'home') {
-    
+class Pages extends MY_Controller
+{
+    public function view($page = 'home')
+    {
         if ( ! file_exists('application/views/pages/'.$page.'.php'))
-                show_404();
+            show_404();
         
-        $data['title'] = ucfirst($page);
+        $this->view['title'] = ucfirst($page);
         
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/header', $this->view);
+        $this->load->view('pages/'.$page,  $this->view);
+        $this->load->view('templates/footer', $this->view);
     }
 }
-?>

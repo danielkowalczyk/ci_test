@@ -1,0 +1,1 @@
+<h2>Zostałeś poprawnie zalogowany!</h2>

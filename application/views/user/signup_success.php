@@ -1,0 +1,1 @@
+<h2>Rejestracja przebiegła pomyślnie! Może się teraz <a href="sign_in">zalogować</a>!</h2>
